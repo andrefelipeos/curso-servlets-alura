@@ -14,6 +14,8 @@
 
 	<form action="${ link_nova_empresa }" method="post">
 		Nome: <input type="text" name="nome" />
+		Data de abertura: <input type="text" name="data" />
+		<input type="submit">
 	</form>
 
 </body>
