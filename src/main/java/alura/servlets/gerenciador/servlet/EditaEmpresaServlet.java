@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import alura.servlets.gerenciador.modelo.Banco;
+import alura.servlets.gerenciador.modelo.Empresa;
+
 @WebServlet("/edita_empresa")
 public class EditaEmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

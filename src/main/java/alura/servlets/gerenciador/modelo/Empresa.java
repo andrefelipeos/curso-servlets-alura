@@ -1,4 +1,4 @@
-package alura.servlets.gerenciador.servlet;
+package alura.servlets.gerenciador.modelo;
 
 import java.util.Date;
 
