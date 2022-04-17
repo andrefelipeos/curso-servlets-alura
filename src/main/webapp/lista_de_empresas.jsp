@@ -17,8 +17,8 @@
 	<c:forEach items="${ listaEmpresas }" var="empresa">
 		<li>
 			${ empresa.nome } - <fmt:formatDate value="${ empresa.dataAbertura }" pattern="dd/MM/yyyy" />
-			<a href="edita_empresa?id=${ empresa.id }">editar</a>
-			<a href="remove_empresa?id=${ empresa.id }">remover</a>
+			<a href="entrada?acao=EditaEmpresa&id=${ empresa.id }">editar</a>
+			<a href="entrada?acao=RemoveEmpresa&id=${ empresa.id }">remover</a>
 		</li>
 	</c:forEach>
 </ul>
