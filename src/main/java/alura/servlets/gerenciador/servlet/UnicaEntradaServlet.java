@@ -22,6 +22,8 @@ public class UnicaEntradaServlet extends HttpServlet {
 		
 		if (paramAcao.equals("ListaEmpresas")) {
 			(new ListaEmpresas()).executa(request, response);
+		} else if (paramAcao.equals("RemoveEmpresa")) {
+			(new RemoveEmpresa()).executa(request, response);
 		}
 	}
 
