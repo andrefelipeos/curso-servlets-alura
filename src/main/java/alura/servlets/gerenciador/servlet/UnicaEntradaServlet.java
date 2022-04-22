@@ -39,7 +39,7 @@ public class UnicaEntradaServlet extends HttpServlet {
 
 		String parametros[] = link.split(":");
 		if (parametros[0].equals("forward")) {
-			RequestDispatcher despachador = request.getRequestDispatcher(parametros[1]);
+			RequestDispatcher despachador = request.getRequestDispatcher("WEB-INF/view/" + parametros[1]);
 			despachador.forward(request, response);
 		} else {
 			response.sendRedirect(parametros[1]);
