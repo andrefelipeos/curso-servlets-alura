@@ -14,7 +14,7 @@ import alura.servlets.gerenciador.modelo.Empresa;
 
 public class CadastraEmpresa {
 	
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nomeEmpresa = request.getParameter("nome");
 		String strDataAbertura = request.getParameter("data");
 		Date dataAbertura = null;
@@ -31,7 +31,7 @@ public class CadastraEmpresa {
 		Banco banco = new Banco();
 		banco.adiciona(novaEmpresa);
 		
-		response.sendRedirect("entrada?acao=ListaEmpresas");
+		return "redirect:entrada?acao=ListaEmpresas";
 	}
 
 }

@@ -12,7 +12,7 @@ import alura.servlets.gerenciador.modelo.Empresa;
 
 public class EditaEmpresa {
 	
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String strId = request.getParameter("id");
 		Integer id = Integer.valueOf(strId);
 		
@@ -20,8 +20,8 @@ public class EditaEmpresa {
 		Empresa empresa = banco.buscaEmpresaComId(id);
 		
 		request.setAttribute("empresa", empresa);
-		RequestDispatcher despachador = request.getRequestDispatcher("edita_empresa.jsp");
-		despachador.forward(request, response);
+		
+		return "forward:edita_empresa.jsp";
 	}
 
 }

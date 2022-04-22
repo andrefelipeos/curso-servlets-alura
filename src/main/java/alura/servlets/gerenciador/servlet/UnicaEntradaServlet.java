@@ -2,6 +2,7 @@ package alura.servlets.gerenciador.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,17 +22,26 @@ public class UnicaEntradaServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String paramAcao = request.getParameter("acao");
+		String link = null;
 		
 		if (paramAcao.equals("ListaEmpresas")) {
-			(new ListaEmpresas()).executa(request, response);
+			link = (new ListaEmpresas()).executa(request, response);
 		} else if (paramAcao.equals("RemoveEmpresa")) {
-			(new RemoveEmpresa()).executa(request, response);
+			link = (new RemoveEmpresa()).executa(request, response);
 		} else if (paramAcao.equals("EditaEmpresa")) {
-			(new EditaEmpresa()).executa(request, response);
+			link = (new EditaEmpresa()).executa(request, response);
 		} else if (paramAcao.equals("AlteraEmpresa")) {
-			(new AlteraEmpresa()).executa(request, response);
+			link = (new AlteraEmpresa()).executa(request, response);
 		} else if (paramAcao.equals("CadastraEmpresa")) {
-			(new CadastraEmpresa()).executa(request, response);
+			link =(new CadastraEmpresa()).executa(request, response);
+		}
+		
+		String parametros[] = link.split(":");
+		if (parametros[0].equals("forward")) {
+			RequestDispatcher despachador = request.getRequestDispatcher(parametros[1]);
+			despachador.forward(request, response);
+		} else {
+			response.sendRedirect(parametros[1]);
 		}
 	}
 
