@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import alura.servlets.gerenciador.acao.AlteraEmpresa;
 import alura.servlets.gerenciador.acao.CadastraEmpresa;
 import alura.servlets.gerenciador.acao.EditaEmpresa;
+import alura.servlets.gerenciador.acao.ExibeFormularioDeCadastro;
 import alura.servlets.gerenciador.acao.ListaEmpresas;
 import alura.servlets.gerenciador.acao.RemoveEmpresa;
 
@@ -35,6 +36,8 @@ public class UnicaEntradaServlet extends HttpServlet {
 			link = (new AlteraEmpresa()).executa(request, response);
 		} else if (paramAcao.equals("CadastraEmpresa")) {
 			link = (new CadastraEmpresa()).executa(request, response);
+		} else if (paramAcao.equals("ExibeFormularioDeCadastro")) {
+			link = (new ExibeFormularioDeCadastro()).executa(request, response);
 		}
 
 		String parametros[] = link.split(":");
