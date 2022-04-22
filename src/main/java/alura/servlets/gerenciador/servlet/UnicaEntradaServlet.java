@@ -1,6 +1,8 @@
 package alura.servlets.gerenciador.servlet;
 
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,12 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import alura.servlets.gerenciador.acao.AlteraEmpresa;
-import alura.servlets.gerenciador.acao.CadastraEmpresa;
-import alura.servlets.gerenciador.acao.EditaEmpresa;
-import alura.servlets.gerenciador.acao.ExibeFormularioDeCadastro;
-import alura.servlets.gerenciador.acao.ListaEmpresas;
-import alura.servlets.gerenciador.acao.RemoveEmpresa;
+import alura.servlets.gerenciador.acao.Acao;
 
 @WebServlet("/entrada")
 public class UnicaEntradaServlet extends HttpServlet {
@@ -23,21 +20,19 @@ public class UnicaEntradaServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String paramAcao = request.getParameter("acao");
 		String link = null;
-
-		if (paramAcao.equals("ListaEmpresas")) {
-			link = (new ListaEmpresas()).executa(request, response);
-		} else if (paramAcao.equals("RemoveEmpresa")) {
-			link = (new RemoveEmpresa()).executa(request, response);
-		} else if (paramAcao.equals("EditaEmpresa")) {
-			link = (new EditaEmpresa()).executa(request, response);
-		} else if (paramAcao.equals("AlteraEmpresa")) {
-			link = (new AlteraEmpresa()).executa(request, response);
-		} else if (paramAcao.equals("CadastraEmpresa")) {
-			link = (new CadastraEmpresa()).executa(request, response);
-		} else if (paramAcao.equals("ExibeFormularioDeCadastro")) {
-			link = (new ExibeFormularioDeCadastro()).executa(request, response);
+		String paramAcao = request.getParameter("acao");
+		String nomeDaClasse = "alura.servlets.gerenciador.acao." + paramAcao;
+		
+		try {
+			Class<?> classe = Class.forName(nomeDaClasse);
+			Constructor<?> construtor = classe.getConstructor();
+			Acao instanciaAcao = (Acao) construtor.newInstance();
+			link = instanciaAcao.executa(request, response);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException | ServletException
+				| IOException e) {
+			throw new ServletException(e);
 		}
 
 		String parametros[] = link.split(":");

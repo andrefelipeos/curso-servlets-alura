@@ -2,7 +2,6 @@ package alura.servlets.gerenciador.acao;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import alura.servlets.gerenciador.modelo.Banco;
 import alura.servlets.gerenciador.modelo.Empresa;
 
-public class EditaEmpresa {
+public class EditaEmpresa implements Acao {
 
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
