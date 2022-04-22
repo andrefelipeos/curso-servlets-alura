@@ -13,24 +13,25 @@ import alura.servlets.gerenciador.modelo.Banco;
 import alura.servlets.gerenciador.modelo.Empresa;
 
 public class CadastraEmpresa {
-	
-	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	public String executa(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String nomeEmpresa = request.getParameter("nome");
 		String strDataAbertura = request.getParameter("data");
 		Date dataAbertura = null;
-		
+
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			dataAbertura = sdf.parse(strDataAbertura);
 		} catch (ParseException e) {
 			throw new ServletException(e);
 		}
-		
+
 		Empresa novaEmpresa = new Empresa(nomeEmpresa, dataAbertura);
-		
+
 		Banco banco = new Banco();
 		banco.adiciona(novaEmpresa);
-		
+
 		return "redirect:entrada?acao=ListaEmpresas";
 	}
 

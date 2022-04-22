@@ -20,10 +20,11 @@ public class UnicaEntradaServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String paramAcao = request.getParameter("acao");
 		String link = null;
-		
+
 		if (paramAcao.equals("ListaEmpresas")) {
 			link = (new ListaEmpresas()).executa(request, response);
 		} else if (paramAcao.equals("RemoveEmpresa")) {
@@ -33,9 +34,9 @@ public class UnicaEntradaServlet extends HttpServlet {
 		} else if (paramAcao.equals("AlteraEmpresa")) {
 			link = (new AlteraEmpresa()).executa(request, response);
 		} else if (paramAcao.equals("CadastraEmpresa")) {
-			link =(new CadastraEmpresa()).executa(request, response);
+			link = (new CadastraEmpresa()).executa(request, response);
 		}
-		
+
 		String parametros[] = link.split(":");
 		if (parametros[0].equals("forward")) {
 			RequestDispatcher despachador = request.getRequestDispatcher(parametros[1]);

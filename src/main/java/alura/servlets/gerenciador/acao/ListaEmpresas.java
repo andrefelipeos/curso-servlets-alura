@@ -12,13 +12,14 @@ import alura.servlets.gerenciador.modelo.Banco;
 import alura.servlets.gerenciador.modelo.Empresa;
 
 public class ListaEmpresas {
-	
-	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	public String executa(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		Banco banco = new Banco();
 		List<Empresa> empresas = banco.getEmpresas();
-		
+
 		request.setAttribute("listaEmpresas", empresas);
-		
+
 		return "forward:lista_de_empresas.jsp";
 	}
 

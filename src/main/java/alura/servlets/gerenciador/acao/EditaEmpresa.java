@@ -11,16 +11,17 @@ import alura.servlets.gerenciador.modelo.Banco;
 import alura.servlets.gerenciador.modelo.Empresa;
 
 public class EditaEmpresa {
-	
-	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	public String executa(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String strId = request.getParameter("id");
 		Integer id = Integer.valueOf(strId);
-		
+
 		Banco banco = new Banco();
 		Empresa empresa = banco.buscaEmpresaComId(id);
-		
+
 		request.setAttribute("empresa", empresa);
-		
+
 		return "forward:edita_empresa.jsp";
 	}
 
