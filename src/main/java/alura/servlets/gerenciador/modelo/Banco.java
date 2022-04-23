@@ -8,6 +8,7 @@ import java.util.List;
 public class Banco {
 
 	private static List<Empresa> listaDeEmpresas = new ArrayList<Empresa>();
+	private static List<Usuario> listaDeUsuarios = new ArrayList<Usuario>();
 	private static int chaveSequencial = 1;
 
 	// bloco estático roda um código estático quando a classe for carregada na JVM
@@ -21,6 +22,11 @@ public class Banco {
 		Banco.listaDeEmpresas.add(microsoft);
 		Banco.listaDeEmpresas.add(google);
 		Banco.listaDeEmpresas.add(apple);
+		
+		Usuario andre = new Usuario("andre", "andre123");
+		Banco.listaDeUsuarios.add(andre);
+		Usuario felipe = new Usuario("felipe", "felipe123");
+		Banco.listaDeUsuarios.add(felipe);
 	}
 
 	public void adiciona(Empresa empresa) {
