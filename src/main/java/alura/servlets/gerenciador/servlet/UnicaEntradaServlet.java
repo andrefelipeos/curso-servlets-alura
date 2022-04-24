@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import alura.servlets.gerenciador.acao.Acao;
 
@@ -20,10 +21,21 @@ public class UnicaEntradaServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String link = null;
 		String paramAcao = request.getParameter("acao");
-		String nomeDaClasse = "alura.servlets.gerenciador.acao." + paramAcao;
-		
+		String nomeDaClasse = null;
+		String link = null;
+
+		boolean acaoProtegida = !(paramAcao.equals("ExibeFormularioDeLogin") || paramAcao.equals("Login"));
+
+		HttpSession sessao = request.getSession();
+		boolean semLogin = (sessao.getAttribute("usuarioLogado") == null);
+
+		if (acaoProtegida && semLogin) {
+			response.sendRedirect("entrada?acao=ExibeFormularioDeLogin");
+			return;
+		}
+
+		nomeDaClasse = "alura.servlets.gerenciador.acao." + paramAcao;
 		try {
 			Class<?> classe = Class.forName(nomeDaClasse);
 			Constructor<?> construtor = classe.getConstructor();
