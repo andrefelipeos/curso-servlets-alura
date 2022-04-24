@@ -12,16 +12,18 @@
 </head>
 <body>
 
-<h3>Lista de empresas:</h3>
-<ul>
-	<c:forEach items="${ listaEmpresas }" var="empresa">
-		<li>
-			${ empresa.nome } - <fmt:formatDate value="${ empresa.dataAbertura }" pattern="dd/MM/yyyy" />
-			<a href="entrada?acao=EditaEmpresa&id=${ empresa.id }">editar</a>
-			<a href="entrada?acao=RemoveEmpresa&id=${ empresa.id }">remover</a>
-		</li>
-	</c:forEach>
-</ul>
+	<c:import url="login_logout.jsp" />
+	
+	<h3>Lista de empresas:</h3>
+	<ul>
+		<c:forEach items="${ listaEmpresas }" var="empresa">
+			<li>
+				${ empresa.nome } - <fmt:formatDate value="${ empresa.dataAbertura }" pattern="dd/MM/yyyy" />
+				<a href="entrada?acao=EditaEmpresa&id=${ empresa.id }">editar</a>
+				<a href="entrada?acao=RemoveEmpresa&id=${ empresa.id }">remover</a>
+			</li>
+		</c:forEach>
+	</ul>
 
 </body>
 </html>

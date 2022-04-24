@@ -12,6 +12,8 @@
 </head>
 <body>
 
+	<c:import url="login_logout.jsp" />
+
 	<form action="${ link_entrada_servlet }" method="post">
 		Nome: <input type="text" name="nome" />
 		Data de abertura: <input type="text" name="data" />
