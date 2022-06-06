@@ -25,16 +25,6 @@ public class UnicaEntradaServlet extends HttpServlet {
 		String nomeDaClasse = null;
 		String link = null;
 
-		boolean acaoProtegida = !(paramAcao.equals("ExibeFormularioDeLogin") || paramAcao.equals("Login"));
-
-		HttpSession sessao = request.getSession();
-		boolean semLogin = (sessao.getAttribute("usuarioLogado") == null);
-
-		if (acaoProtegida && semLogin) {
-			response.sendRedirect("entrada?acao=ExibeFormularioDeLogin");
-			return;
-		}
-
 		nomeDaClasse = "alura.servlets.gerenciador.acao." + paramAcao;
 		try {
 			Class<?> classe = Class.forName(nomeDaClasse);
